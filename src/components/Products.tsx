@@ -5,7 +5,8 @@ import { IProduct, getProducts } from '../api/productsAPI';
 const Products: React.FC = () => {
   const { isError, isLoading, data, error } = useQuery<IProduct[]>({
     queryKey: ['products'],
-    queryFn: getProducts
+    queryFn: getProducts,
+    select: products => products.sort((a, b) => a.id! - b.id!)
   });
 
   if(isLoading) {
@@ -19,7 +20,7 @@ const Products: React.FC = () => {
   return (
     <div>
       {data?.map(product => (
-        <div>
+        <div key={product.id}>
           <h2>{product.name}</h2>
           <p>{product.description}</p>
           <span>{product.price}</span>
