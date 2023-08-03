@@ -1,0 +1,25 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Macbook Air M1",
+            "description": "Incredible Laptop by Apple.inc that allows you to work everywhere.",
+            "price": 25700,
+            "inStock": true
+        },
+        {
+            "id": 2,
+            "name": "Macbook Pro M2",
+            "description": "Incredible Laptop by Apple.inc that allows you to work everywhere.",
+            "price": 45000,
+            "inStock": true
+        },
+        {
+            "id": 3,
+            "name": "Ipad Pro",
+            "description": "Incredible Tablet by Apple.inc that allows you to work everywhere.",
+            "price": 20500,
+            "inStock": true
+        }
+    ]
+}
