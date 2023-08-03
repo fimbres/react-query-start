@@ -9,8 +9,12 @@ export const getProducts = async () => {
     return res.data;
 }
 
+export const createProduct = async (product: IProduct) => {
+    productsApi.post('/products', product);
+}
+
 export interface IProduct {
-    id: number,
+    id?: number,
     name: string,
     description: string,
     price: number,
