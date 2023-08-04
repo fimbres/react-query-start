@@ -17,6 +17,10 @@ export const deleteProduct = async (id: number) => {
     productsApi.delete('/products/' + id);
 }
 
+export const updateProduct = async (product: IProduct) => {
+    productsApi.put('/products/' + product.id, product);
+}
+
 export interface IProduct {
     id?: number,
     name: string,
