@@ -1,12 +1,20 @@
 import React from 'react'
-import { useQuery } from '@tanstack/react-query';
-import { IProduct, getProducts } from '../api/productsAPI';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { IProduct, getProducts, deleteProduct } from '../api/productsAPI';
 
 const Products: React.FC = () => {
+  const queryClient = useQueryClient();
   const { isError, isLoading, data, error } = useQuery<IProduct[]>({
     queryKey: ['products'],
     queryFn: getProducts,
     select: products => products.sort((a, b) => a.id! - b.id!)
+  });
+  const { mutate } = useMutation({
+    mutationFn: deleteProduct,
+    onSuccess: () => {
+      console.log('product deleted!');
+      queryClient.invalidateQueries(['products']);
+    }
   });
 
   if(isLoading) {
@@ -16,6 +24,10 @@ const Products: React.FC = () => {
   if(isError) {
     <div>Error! {String(error) || ""}</div>
   }
+
+  const handleDelete = async (id: number) => {
+    mutate(id);
+  };
 
   return (
     <div>
